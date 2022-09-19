@@ -9,7 +9,7 @@ export default function ProductItem(props) {
 					src={img}
 				/>
 				<div className='flex items-center justify-between pt-3'>
-					<p className=''>{props.product.name}</p>
+					<p className='w-6 h-6'>{props.product.name}</p>
 					<svg
 						className='w-6 h-6 text-gray-500 fill-current hover:text-black'
 						xmlns='http://www.w3.org/2000/svg'
