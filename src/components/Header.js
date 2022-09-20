@@ -1,12 +1,24 @@
 import { Route, Routes, Link } from 'react-router-dom';
 import About from '../pages/About';
 import Cart from '../pages/Cart';
-import Nordics from '../pages/Nordics';
+import NotFound from '../pages/NotFound';
 import Shop from '../pages/Shop';
 import User from '../pages/User';
-import './Header.css';
+import ProductDetail from './product/Detail';
+import { useSelector } from 'react-redux';
+import Registration from './auths/Registration';
+import Login from './auths/Login';
 
 export default function Header() {
+	const cart = useSelector((state) => state.purchase.cart);
+
+	const getTotalQuantity = () => {
+		let total = 0;
+		cart.forEach((item) => {
+			total += 1;
+		});
+		return total;
+	};
 	return (
 		<>
 			<nav
@@ -39,14 +51,14 @@ export default function Header() {
 							<ul className='items-center justify-between pt-4 text-base text-gray-700 md:flex md:pt-0'>
 								<li>
 									<Link
-										className='inline-block px-4 py-2 no-underline hover:text-black hover:underline'
+										className='inline-block px-4 py-2 text-xl no-underline hover:text-black hover:underline'
 										to='/'>
 										Shop
 									</Link>
 								</li>
 								<li>
 									<Link
-										className='inline-block px-4 py-2 no-underline hover:text-black hover:underline'
+										className='inline-block px-4 py-2 text-xl no-underline hover:text-black hover:underline'
 										to='/about'>
 										About
 									</Link>
@@ -56,9 +68,7 @@ export default function Header() {
 					</div>
 
 					<div className='order-1 md:order-2'>
-						<Link
-							className='flex items-center text-xl font-bold tracking-wide text-gray-800 no-underline hover:no-underline '
-							to='/nordics'>
+						<span className='flex items-center text-xl font-bold tracking-wide text-gray-800 no-underline hover:no-underline '>
 							<svg
 								className='mr-2 text-gray-800 fill-current'
 								xmlns='http://www.w3.org/2000/svg'
@@ -68,7 +78,7 @@ export default function Header() {
 								<path d='M5,22h14c1.103,0,2-0.897,2-2V9c0-0.553-0.447-1-1-1h-3V7c0-2.757-2.243-5-5-5S7,4.243,7,7v1H4C3.447,8,3,8.447,3,9v11 C3,21.103,3.897,22,5,22z M9,7c0-1.654,1.346-3,3-3s3,1.346,3,3v1H9V7z M5,10h2v2h2v-2h6v2h2v-2h2l0.002,10H5V10z' />
 							</svg>
 							NORDICS
-						</Link>
+						</span>
 					</div>
 
 					<div
@@ -96,31 +106,37 @@ export default function Header() {
 						<Link
 							className='inline-block pl-3 no-underline hover:text-black'
 							to='/cart'>
-							<svg
-								className='fill-current hover:text-black'
-								xmlns='http://www.w3.org/2000/svg'
-								width='24'
-								height='24'
-								viewBox='0 0 24 24'>
-								<path d='M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z' />
-								<circle
-									cx='10.5'
-									cy='18.5'
-									r='1.5'
-								/>
-								<circle
-									cx='17.5'
-									cy='18.5'
-									r='1.5'
-								/>
-							</svg>
+							<span className='relative inline-block mt-3'>
+								<svg
+									className='fill-current hover:text-black'
+									xmlns='http://www.w3.org/2000/svg'
+									width='24'
+									height='24'
+									viewBox='0 0 24 24'>
+									<path d='M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z' />
+									<circle
+										cx='10.5'
+										cy='18.5'
+										r='1.5'
+									/>
+									<circle
+										cx='17.5'
+										cy='18.5'
+										r='1.5'
+									/>
+								</svg>
+								<span className='absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full'>
+									{getTotalQuantity() || 0}
+								</span>
+							</span>
 						</Link>
 					</div>
 				</div>
 			</nav>
 			<Routes>
 				<Route
-					path='/'
+					index
+					path='/*'
 					element={<Shop />}
 				/>
 				<Route
@@ -130,19 +146,31 @@ export default function Header() {
 				<Route
 					path='/cart'
 					element={<Cart />}
-				/>
-				<Route
-					path='/nordics'
-					element={<Nordics />}
+					children
 				/>
 				<Route
 					path='/shop'
 					element={<Shop />}
 				/>
 				<Route
+					path='/products/:id'
+					element={<ProductDetail />}
+				/>
+				<Route
+					path='/login'
+					element={<Login />}
+				/>
+				<Route
+					path='/register'
+					element={<Registration />}
+				/>
+				<Route
 					path='/user'
 					element={<User />}
 				/>
+				<Route
+					path='*'
+					element={<NotFound />}></Route>
 			</Routes>
 		</>
 	);

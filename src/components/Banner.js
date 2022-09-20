@@ -12,7 +12,7 @@ export default function Banner() {
 						<div className='banner-content'>
 							<p className='banner-subtitle'>Trending item</p>
 							<h2 className='banner-title'>
-								Women's latest fahion sale
+								Women's latest fashion sale
 							</h2>
 							<p className='banner-text'>
 								starting at &dollar; <b>20</b>.00
@@ -52,7 +52,7 @@ export default function Banner() {
 						<div className='banner-content'>
 							<p className='banner-subtitle'>Sale offer</p>
 							<h2 className='banner-title'>
-								New fahion summer sale
+								New fashion summer sale
 							</h2>
 							<p className='banner-text'>
 								starting at &dollar; <b>29</b>.99
