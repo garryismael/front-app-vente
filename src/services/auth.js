@@ -23,6 +23,11 @@ export async function me() {
 }
 
 export async function register_user(data) {
-	return await axios.post(`${URL}/register`, data);
+	return await axios.post(`${URL}/register`, data, {
+		headers: { 'Content-Type': 'multipart/form-data' },
+	});
 }
 
+export async function logout_user() {
+	return await axios.post(`${URL}/logout`);
+}

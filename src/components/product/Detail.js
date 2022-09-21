@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {addToCart} from '../../redux/cartSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { addToCart } from '../../redux/cartSlice';
 
 export default function ProductDetail() {
 	const location = useLocation();
@@ -52,7 +52,7 @@ export default function ProductDetail() {
 									onChange={(e) => setValue(e.target.value)}
 								/>
 							</div>
-							<button onClick={setCartValue} className='px-6 my-2 ml-auto text-white bg-red-500 border-0 rounded focus:outline-none hover:bg-red-600'>
+							<button onClick={setCartValue} className='px-6 my-2 ml-auto text-white bg-blue-500 border-0 rounded focus:outline-none hover:bg-blue-600'>
 								Add
 							</button>
 						</div>

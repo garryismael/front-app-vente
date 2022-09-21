@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Modal from '../components/modal';
-import { useDispatch } from 'react-redux';
-import { removeItem, setQuantity, clearCart } from '../redux/cartSlice';
 import '../css/cart.css';
+import { clearCart, removeItem, setQuantity } from '../redux/cartSlice';
 import { create_purchases } from '../services/purchase';
 
 export default function Cart() {
@@ -11,7 +11,11 @@ export default function Cart() {
 	const [clearModal, setClearModal] = useState(false);
 	const [purchaseModal, setPurchaseModal] = useState(false);
 	const [done, setDone] = useState(false);
+
 	const cart = useSelector((state) => state.purchase.cart);
+	const user = useSelector((state) => state.auth.user);
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
 	const getTotalSum = () => {
 		let total = 0;
@@ -65,6 +69,10 @@ export default function Cart() {
 		}
 	};
 
+	const onSetPurchaseModal = () => {
+		user !== null ? setPurchaseModal(true) : navigate('/login');
+	};
+
 	return (
 		<div className='container relative mx-auto mt-5 overflow-x-auto'>
 			{done && (
@@ -82,7 +90,7 @@ export default function Cart() {
 				<button
 					className={'bg-blue-600 p-2 text-white'}
 					hidden={showButtons()}
-					onClick={() => setPurchaseModal(true)}>
+					onClick={onSetPurchaseModal}>
 					Purchase
 				</button>
 			</div>

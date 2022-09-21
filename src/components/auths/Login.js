@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { login_user } from '../../services/auth';
-import { setUser } from '../../redux/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { setUser } from '../../redux/authSlice';
+import { login_user } from '../../services/auth';
 
 import '../../css/login.css';
 export default function Login() {

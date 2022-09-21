@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { get_products } from '../services/product';
 import ProductItem from '../components/product/Item';
+import { get_products } from '../services/product';
 
 export default function Shop() {
 	const [products, setProducts] = useState([]);
