@@ -1,0 +1,10 @@
+.search-field {
+	position: relative;
+}
+
+.img-search {
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	margin-right: 5px;
+}

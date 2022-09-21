@@ -28,7 +28,16 @@ export async function register_user(data) {
 	});
 }
 
+export async function edit_me(data) {
+	return await axios.put(`${URL}/me/edit`, data, {
+		headers: { 'Content-Type': 'multipart/form-data' },
+	});
+}
+
+export async function change_my_password(data) {
+	return await axios.put(`${URL}/password/edit`, data);
+}
+
 export async function logout_user() {
 	return await axios.post(`${URL}/logout`);
 }
-

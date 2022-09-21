@@ -9,6 +9,8 @@ import Layout from './pages/Layout';
 import NotFound from './pages/NotFound';
 import Shop from './pages/Shop';
 import User from './pages/User';
+import ChangePassword from './views/user/ChangePassword';
+import EditUser from './views/user/Edit';
 
 export default function App() {
 	return (
@@ -48,6 +50,14 @@ export default function App() {
 				<Route
 					path='user'
 					element={<User />}
+				/>
+				<Route
+					path='user/edit'
+					element={<EditUser />}
+				/>
+				<Route
+					path='user/password/edit'
+					element={<ChangePassword/>}
 				/>
 				<Route
 					path='*'
