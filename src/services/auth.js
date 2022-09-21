@@ -31,3 +31,4 @@ export async function register_user(data) {
 export async function logout_user() {
 	return await axios.post(`${URL}/logout`);
 }
+
