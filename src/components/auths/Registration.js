@@ -18,6 +18,7 @@ export default function Registration() {
 			onChange: function onSetName(e) {
 				setName(e.target.value);
 			},
+			value: name,
 		},
 		{
 			label: 'Image Profile',
@@ -32,6 +33,7 @@ export default function Registration() {
 			onChange: function onSetAddress(e) {
 				setAddress(e.target.value);
 			},
+			value: address
 		},
 		{
 			label: 'Contact',
@@ -39,6 +41,7 @@ export default function Registration() {
 			onChange: function onSetContact(e) {
 				setContact(e.target.value);
 			},
+			value: contact
 		},
 		{
 			label: 'Email',
@@ -46,6 +49,7 @@ export default function Registration() {
 			onChange: function onSetEmail(e) {
 				setEmail(e.target.value);
 			},
+			value: email
 		},
 		{
 			label: 'Password',
@@ -53,6 +57,7 @@ export default function Registration() {
 			onChange: function onSetPassword(e) {
 				setPassword(e.target.value);
 			},
+			value: password
 		},
 	];
 
@@ -84,6 +89,7 @@ export default function Registration() {
 							label={input.label}
 							type={input.type}
 							onChange={input.onChange}
+							value={input.value}
 						/>
 					))}
 
